@@ -10,7 +10,7 @@ function subtract(num1, num2){
     return first-second;
 }
 
-function multpliy(num1, num2){
+function multiply(num1, num2){
     let first = parseInt(num1);
     let second = parseInt(num2);
     return first*second;
@@ -21,13 +21,12 @@ function divide(num1, num2){
     let second = parseInt(num2);
     return first/second;
 }
-
 function operate(op, num1, num2){
     switch(op){
         case "+":
             return add(num1,num2);
         case "-":
-            return substract(num1,num2);
+            return subtract(num1,num2);
         case "*":
             return multiply(num1,num2);
         case "/":
@@ -35,8 +34,9 @@ function operate(op, num1, num2){
     }
 }
 
-let trueDisplay = "";
-function display(){
+let trueDisplay = ""; 
+let op = "";
+function display(){ //updates display div to show numbers
     const button = document.querySelectorAll(".row.dis")
     const display = document.querySelector(".display");
     button.forEach((item) => {
@@ -47,17 +47,39 @@ function display(){
     });
 }
 
+screenOp = "";
+function identify(){ //finds which operator user inputs
+    if(trueDisplay.indexOf("+") > 0){
+        op = "+"
+        screenOp = "+";
+    }
+    if(trueDisplay.indexOf("-") > 0){
+        op =     "-";
+        screenOp = "-";
+    }
+    if(trueDisplay.indexOf("×") > 0){
+        op = "*";
+        screenOp = "×";
+    }
+    if(trueDisplay.indexOf("÷") > 0){
+        op = "/";
+        screenOp = "÷";
+    }
+    return screenOp;
+} 
 
-
-function calculate(){
+function calculate(){ //produces answer when equal key is pressed
     const eq = document.querySelector("#equal");
+    const dis = document.querySelector(".display");
     eq.addEventListener('click', () => {
-        ind = trueDisplay.indexOf("+");
+        let ind = trueDisplay.indexOf(identify());
         let num1 = trueDisplay.slice(0,ind);
         let num2 = trueDisplay.slice(ind+1);
-        let ans = operate("+", num1, num2);
-        console.log(ans);
+        trueDisplay = operate(op, num1, num2);
+        dis.textContent = operate(op, num1, num2);
+
     });
 }
+
 display();
 calculate();
