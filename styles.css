@@ -34,23 +34,27 @@
     border-top: solid;
 }
 
-.buttonR1, .buttonR2, .buttonR3, .buttonR4, .buttonR5{
+.button{
     display: flex;
     height: 20%;
     width: 100%;
 }
 
-#row1, #row2, #row3, #row4, #row5{
+.row{
     width: 25%;
     font-size:2em;
 }
 
-.c{
+#c{
     border-width: 1px;
     border-bottom-left-radius: 12px;
 }
 
-.plus{
+#plus{
     border-width: 1px;
     border-bottom-right-radius: 12px;
+}
+
+.display{
+    font-size: 3em;
 }
